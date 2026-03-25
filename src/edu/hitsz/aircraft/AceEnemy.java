@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import edu.hitsz.bullet.BaseBullet;
 import edu.hitsz.bullet.EnemyBullet;
 
-public class VeteranEnemy extends EliteEnemy {
+public class AceEnemy extends AbstractAircraft {
 
-    protected int bulletPower = 20; // 老兵敌机的子弹威力更大
+    protected int bulletPower = 30; // 王牌敌机的子弹威力更大
     protected int direction = 1;
-    protected int shootNum = 1;
+    protected int shootNum = 3;
 
-    public VeteranEnemy(int locationX, int locationY, int speedX, int speedY, int hp) {
+    public AceEnemy(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
     }
-    
+
     @Override
     public void forward() {
         super.forward();
@@ -32,10 +32,11 @@ public class VeteranEnemy extends EliteEnemy {
     @Override
     public List<BaseBullet> shoot() {
         List<BaseBullet> bullets = new ArrayList<>();
+        // 王牌敌机一次发射3颗子弹
         int locationX = this.getLocationX();
         int locationY = this.getLocationY() + direction*2;
         int bulletSpeedX = 0;
-        int bulletSpeedY = this.getSpeedY() + direction*5;
+        int bulletSpeedY = this.getSpeedY() + direction*10;
 
         for (int i = 0; i < shootNum; i++) {
             bullets.add(new EnemyBullet(locationX + (i - shootNum / 2), locationY + direction*2, bulletSpeedX, bulletSpeedY, this.bulletPower));

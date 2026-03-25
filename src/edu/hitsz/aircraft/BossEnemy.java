@@ -8,8 +8,10 @@ import edu.hitsz.bullet.EnemyBullet;
 
 
 public class BossEnemy extends AbstractAircraft {
+
     protected int bulletPower = 100; // Boss敌机的子弹威力更大
     protected int direction = 1;
+    protected int shootNum = 5;
 
     BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
@@ -29,13 +31,15 @@ public class BossEnemy extends AbstractAircraft {
     // Boss机一次发射5颗子弹
     public List<BaseBullet> shoot() {
         List<BaseBullet> bullets = new ArrayList<>();
-        // 此为中央
+        // 此为中央子弹参数 
         int locationX = this.getLocationX();
         int locationY = this.getLocationY() + direction*2;
         int bulletSpeedX = 0;
         int bulletSpeedY = this.getSpeedY() + direction*20;
 
-        bullets.add(new EnemyBullet(locationX, locationY + direction*2, bulletSpeedX, bulletSpeedY, this.bulletPower));
+        for (int i = 0; i < shootNum; i++) {
+            bullets.add(new EnemyBullet(locationX + (i - shootNum / 2), locationY + direction*2, bulletSpeedX, bulletSpeedY, this.bulletPower));
+        }
         return bullets;
     }
 }

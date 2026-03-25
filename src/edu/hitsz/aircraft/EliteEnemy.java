@@ -8,16 +8,12 @@ import edu.hitsz.application.Main;
 
 public class EliteEnemy extends AbstractAircraft {
 
-    protected int hp;
-    protected int maxHp;
     protected int bulletPower = 10;
-
     protected int direction = 1; // 向下发射
+    protected int shootNum = 1;
     
     public EliteEnemy(int locationX, int locationY, int speedX, int speedY, int hp) {
         super(locationX, locationY, speedX, speedY, hp);
-        this.hp = hp;
-        this.maxHp = hp;
     }
 
     @Override
@@ -37,7 +33,9 @@ public class EliteEnemy extends AbstractAircraft {
         int bulletSpeedX = 0;
         int bulletSpeedY = this.getSpeedY() + direction*2;
 
-        bullets.add(new EnemyBullet(locationX, locationY + direction*2, bulletSpeedX, bulletSpeedY, this.bulletPower));
+        for (int i = 0; i < shootNum; i++) {
+            bullets.add(new EnemyBullet(locationX + (i - shootNum / 2), locationY + direction*2, bulletSpeedX, bulletSpeedY, this.bulletPower));
+        }
         return bullets;
     }
 }
