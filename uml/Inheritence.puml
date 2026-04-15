@@ -1,81 +1,44 @@
 @startuml
-'https://plantuml.com/class-diagram
 
 abstract class AbstractFlyingObject
-{
-    # locationX:int
-    # locationY:int
-    # speedX:int
-    # speedY:int
-    # image:BufferedImage
-    # width:int
-    # height:int
-    # isValid:boolean
-
-    + AbstractFlyingObject(int locationX, int locationY, int speedX, int speedY)
-    + forward():void
-    + crash(AbstractFlyingObject flyingObject):boolean
-    + setLocation(double locationX, double locationY):void
-    + getLocationX():int
-    + getLocationY():int
-    + getSpeedY():int
-    + getImage():BufferedImage
-    + getWidth():int
-    + getHeight():int
-    + notValid():boolean
-    + vanish():void
-}
 abstract class AbstractAircraft
-{
-	# maxHp:int
-    # hp:int
-    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
-    + decreaseHp(int decrease):void
-    + getHp():int
-    + {abstract} shoot():List<BaseBullet>
- }
+abstract class BaseBullet
+abstract class BaseProp
 
+class HeroAircraft
+class MobEnemy
+class EliteEnemy
+class VeteranEnemy
+class AceEnemy
+class BossEnemy
 
-class HeroAircraft {
-    - shootNum:int
-    - power:int
-    - direction:int
-    + HeroAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
-    + forward():void
-    + shoot():List<BaseBullet>
-}
+class HeroBullet
+class EnemyBullet
+
+class BloodProp
+class BulletProp
+class BulletPlusProp
+class BombProp
+class FreezeProp
+
+AbstractFlyingObject <|-- AbstractAircraft
+AbstractFlyingObject <|-- BaseBullet
+AbstractFlyingObject <|-- BaseProp
 
 AbstractAircraft <|-- HeroAircraft
-
-class MobEnemy {
-    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
-    + forward():void
-    + shoot():List<BaseBullet>
-}
 AbstractAircraft <|-- MobEnemy
-
-abstract class BaseBullet
-{
-    - power:int
-    + BaseBullet(int locationX, int locationY, int speedX, int speedY, int power)
-    + forward():void
-	+ getPower():int
-}
-
-class HeroBullet {
-    + HeroBullet(int locationX, int locationY,
-     int speedX, int speedY, int power)
-}
-
-class EnemyBullet {
-    + EnemyBullet(int locationX, int locationY,
-     int speedX, int speedY, int power)
-}
+AbstractAircraft <|-- EliteEnemy
+AbstractAircraft <|-- VeteranEnemy
+AbstractAircraft <|-- AceEnemy
+AbstractAircraft <|-- BossEnemy
 
 BaseBullet <|-- HeroBullet
 BaseBullet <|-- EnemyBullet
 
-AbstractFlyingObject <|-- AbstractAircraft
-AbstractFlyingObject <|-- BaseBullet
+BaseProp <|-- BloodProp
+BaseProp <|-- BulletProp
+BaseProp <|-- BulletPlusProp
+BaseProp <|-- BombProp
+BaseProp <|-- FreezeProp
 
 @enduml

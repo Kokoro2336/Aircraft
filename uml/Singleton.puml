@@ -1,0 +1,10 @@
+@startuml
+title Singleton Pattern - HeroAircraft
+
+class HeroAircraft <<Singleton>> {
+  - {static} HERO_AIRCRAFT: HeroAircraft
+  - HeroAircraft()
+  + {static} getInstance(): HeroAircraft
+}
+
+@enduml

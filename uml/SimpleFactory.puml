@@ -1,0 +1,29 @@
+@startuml
+title Simple Factory Pattern - PropFactory
+
+class PropFactory <<SimpleFactory>> {
+  + {static} createProp(type:String, x:int, y:int): BaseProp
+  + {static} createRandom(x:int, y:int, includeFreeze:boolean): BaseProp
+}
+
+abstract class BaseProp
+class BloodProp
+class BulletProp
+class BulletPlusProp
+class BombProp
+class FreezeProp
+
+BaseProp <|-- BloodProp
+BaseProp <|-- BulletProp
+BaseProp <|-- BulletPlusProp
+BaseProp <|-- BombProp
+BaseProp <|-- FreezeProp
+
+PropFactory ..> BaseProp
+PropFactory ..> BloodProp
+PropFactory ..> BulletProp
+PropFactory ..> BulletPlusProp
+PropFactory ..> BombProp
+PropFactory ..> FreezeProp
+
+@enduml

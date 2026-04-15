@@ -1,0 +1,24 @@
+@startuml
+title Strategy Pattern - ShootStrategy
+
+interface ShootStrategy {
+  + shoot(aircraft: AbstractAircraft): List<BaseBullet>
+}
+
+class DirectShootStrategy
+class ScatterShootStrategy
+class CircleShootStrategy
+
+abstract class AbstractAircraft {
+  - shootStrategy: ShootStrategy
+  + setShootStrategy(strategy: ShootStrategy): void
+  + shoot(): List<BaseBullet>
+}
+
+ShootStrategy <|.. DirectShootStrategy
+ShootStrategy <|.. ScatterShootStrategy
+ShootStrategy <|.. CircleShootStrategy
+
+AbstractAircraft o--> ShootStrategy
+
+@enduml
